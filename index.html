@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>掘金大冒险</title>
+    <meta charset="UTF-8">
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+</head>
+
+<body>
+    <div id="app">
+        <el-row>
+            <el-col :span="8">
+                <div class="grid-content bg-purple">
+                    <div class="head-box">
+
+                    </div>
+                    <div class="start-button"></div>
+                    <div>介绍：</div>
+                    <div>操作指南：</div>
+                    <div>游戏目标：</div>
+                </div>
+            </el-col>
+            <el-col :span="8">
+                <div class="middle grid-content bg-purple-light">
+                    <div class="head-box">
+
+                    </div>
+                    <div class="start-button" onclick="startGame()"></div>
+                </div>
+            </el-col>
+            <el-col :span="8">
+                <div class="grid-content bg-purple-light">
+                    <div class="head-box">
+
+                    </div>
+                    <div class="start-button"></div>
+                </div>
+            </el-col>
+        </el-row>
+    </div>
+</body>
+<!-- import Vue before Element -->
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+
+            }
+
+        },
+        methods: {
+            startGame () {
+                //this指vm实例
+                window.location.href = "/game/flappy-click.html";
+            }
+        }
+
+    })
+</script>
+<style>
+    #app {
+        width: 100%;
+        height: 100%;
+        background-color: #CC9999;
+    }
+
+    .grid-content {
+        margin: 20px;
+        width: auto;
+        min-width: 400px;
+        padding-top: 20px;
+        height: calc(100vh - 60px);
+        background-color: #FFFFCC;
+        border-radius: 20px;
+        text-align: center;
+    }
+
+    .middle {
+        margin: 20px 0px;
+    }
+
+    .head-box {
+        height: 400px;
+        margin: 0 20px 20px 20px;
+        background-color: #f5f5f5;
+    }
+
+    .start-button {
+        margin: auto;
+        width: 280px;
+        height: 80px;
+        background-image: url('/assets/start.png');
+        background-size: 100%;
+        background-repeat: no-repeat;
+    }
+
+    .start-button:hover {
+        background-image: url('/assets/start_hover.png');
+    }
+</style>
+
+</html>
