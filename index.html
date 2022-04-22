@@ -4,97 +4,137 @@
 <head>
     <title>掘金大冒险</title>
     <meta charset="UTF-8">
-    <!-- import CSS -->
-    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
 </head>
 
 <body>
-    <div id="app">
-        <el-row>
-            <el-col :span="8">
-                <div class="grid-content bg-purple">
-                    <div class="head-box">
-
-                    </div>
-                    <div class="start-button"></div>
-                    <div>介绍：</div>
-                    <div>操作指南：</div>
-                    <div>游戏目标：</div>
+    <ul>
+        <li>
+            <div class="grid-content r-yoyo">
+                <div class="head-box">
+                    <img src="/assets/img/r-yoyo.jpg" alt="">
                 </div>
-            </el-col>
-            <el-col :span="8">
-                <div class="middle grid-content bg-purple-light">
-                    <div class="head-box">
-
-                    </div>
-                    <div class="start-button" onclick="startGame()"></div>
+                <div class="start-button" onclick="startGame(1)"></div>
+                <div class="introduce first">
+                    <img src="/assets/img/intro.png" alt="">
+                    游戏介绍
+                    <p class="intro-content">这是一款很好玩的小游戏</p>
                 </div>
-            </el-col>
-            <el-col :span="8">
-                <div class="grid-content bg-purple-light">
-                    <div class="head-box">
-
-                    </div>
-                    <div class="start-button"></div>
+                <div class="introduce">
+                    <img src="/assets/img/operation.png" alt="">
+                    操作指南
+                    <p class="intro-content">这是一款很好玩的小游戏</p>
                 </div>
-            </el-col>
-        </el-row>
-    </div>
+                <div class="introduce">
+                    <img src="/assets/img/end.png" alt="">
+                    游戏目标
+                    <p class="intro-content">这是一款很好玩的小游戏</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="middle grid-content s-hawking">
+                <div class="head-box">
+                    <img src="/assets/img/s-hawking.jpg" alt="">
+                </div>
+                <div class="start-button" onclick="startGame(2)"></div>
+                <div class="introduce first">
+                    <img src="/assets/img/intro.png" alt="">
+                    游戏介绍
+                    <p class="intro-content">这是一款很好玩的小游戏</p>
+                </div>
+                <div class="introduce">
+                    <img src="/assets/img/operation.png" alt="">
+                    操作指南
+                    <p class="intro-content">这是一款很好玩的小游戏</p>
+                </div>
+                <div class="introduce">
+                    <img src="/assets/img/end.png" alt="">
+                    游戏目标
+                    <p class="intro-content">这是一款很好玩的小游戏</p>
+                </div>
+            </div>
+        </li>
+        <li>
+            <div class="grid-content f-click">
+                <div class="head-box">
+                    <img src="/assets/img/f-click.jpg" alt="">
+                </div>
+                <div class="start-button" onclick="startGame(3)"></div>
+                <div class="introduce first">
+                    <img src="/assets/img/intro.png" alt="">
+                    游戏介绍
+                    <p class="intro-content">Just keep click</p>
+                </div>
+                <div class="introduce">
+                    <img src="/assets/img/operation.png" alt="">
+                    操作指南
+                    <p class="intro-content">疯狂点击鼠标或者空格键</p>
+                </div>
+                <div class="introduce">
+                    <img src="/assets/img/end.png" alt="">
+                    游戏目标
+                    <p class="intro-content">操纵click尽可能飞的更久，穿过更多的管道</p>
+                </div>
+            </div>
+        </li>
+    </ul>
 </body>
-<!-- import Vue before Element -->
-<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-<!-- import JavaScript -->
-<script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <script>
-    new Vue({
-        el: '#app',
-        data: function () {
-            return {
-
-            }
-
-        },
-        methods: {
-            startGame () {
-                //this指vm实例
-                window.location.href = "/game/flappy-click.html";
-            }
+    function startGame(n) {
+        switch (n) {
+            case 1:
+                window.open("/game/run-yoyo.html");
+                break;
+            case 2:
+                window.open("/game/super-hawking.html");
+                break;
+            case 3:
+                window.open("/game/flappy-click.html");
+                break;
         }
-
-    })
+    }
 </script>
 <style>
-    #app {
-        width: 100%;
+    html,body,ul{
+        margin: 0;
+        padding: 0;
+    }
+    ul {
+        display: flex;
+        align-items: center;
+    }
+
+    li {
+        display: inline-block;
         height: 100%;
-        background-color: #CC9999;
+        flex: 1;
     }
 
     .grid-content {
-        margin: 20px;
-        width: auto;
-        min-width: 400px;
+        margin: 30px 40px;
         padding-top: 20px;
-        height: calc(100vh - 60px);
+        height: calc(100vh - 80px);
         background-color: #FFFFCC;
         border-radius: 20px;
         text-align: center;
     }
 
-    .middle {
-        margin: 20px 0px;
-    }
-
     .head-box {
-        height: 400px;
+        width: calc(100% - 40px);
         margin: 0 20px 20px 20px;
         background-color: #f5f5f5;
+    }
+    .head-box img{
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: cover;
     }
 
     .start-button {
         margin: auto;
-        width: 280px;
-        height: 80px;
+        width: 50%;
+        height: 8%;
         background-image: url('/assets/start.png');
         background-size: 100%;
         background-repeat: no-repeat;
@@ -102,6 +142,36 @@
 
     .start-button:hover {
         background-image: url('/assets/start_hover.png');
+    }
+    .introduce{
+        font-size: 18px;
+        font-weight: 900;
+        color: #7187f6;
+        text-align: left;
+        margin-left: 20px;
+        margin-bottom: 25px;
+        letter-spacing: 2px;
+    }
+    .intro-content{
+        padding: 20px 0;
+    }
+    .introduce.first{
+        color: #ff7c48;
+    }
+    .introduce:last-child{
+        color: #5adfb0;
+    }
+    .introduce img{
+        width: 18px;
+        height: auto;
+        vertical-align: middle;
+    }
+    .introduce p{
+        margin: 5px 0 10px;
+        font-size: 14px;
+        font-weight: 400;
+        color: rgb(116, 127, 146);
+        margin-left: 40px;
     }
 </style>
 
