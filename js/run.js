@@ -9,7 +9,7 @@ kaboom({
 })
 
 // load assets
-loadSprite("bean", "/assets/yoyo.png")
+loadSprite("bean", "./assets/yoyo.png")
 
 scene("game", () => {
 
