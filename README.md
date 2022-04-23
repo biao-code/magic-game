@@ -10,7 +10,7 @@
 
 ### 2.EAT YOYO
 
-![image](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b27e4b5682d240879c3ec9013cff4cd9~tplv-k3u1fbpfcp-watermark.image?)
+![image](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3286ca928a114b109ae67a7673404878~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 3.FLAPPY CLICK
 
