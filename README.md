@@ -10,7 +10,7 @@
 
 ### 2.EAT YOYO
 
-![chrome-capture-2022-3-23.gif](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b27e4b5682d240879c3ec9013cff4cd9~tplv-k3u1fbpfcp-watermark.image?)
+![chrome-capture-2022-3-23.gif](https://github.com/biao-code/magic-game/blob/062cc36f683e892a51d40dcbcd53bc76152c6370/assets/gif/yoyo.gif)
 
 ### 3.FLAPPY CLICK
 
