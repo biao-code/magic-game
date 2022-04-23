@@ -8,14 +8,14 @@ const obstacles = [
 ]
 
 for (const obstacle of obstacles) {
-	loadSprite(obstacle, `/assets/${obstacle}.png`)
+	loadSprite(obstacle, `./assets/${obstacle}.png`)
 }
 
 // 添加yoyo和ghosty对象，以及音效
-loadSprite("yoyo", "/assets/yoyo.png")
-loadSprite("ghosty", "/assets/ghosty.png")
-loadSound("blip", "/assets/blip.mp3")
-loadSound("wooosh", "/assets/wooosh.mp3")
+loadSprite("yoyo", "./assets/yoyo.png")
+loadSprite("ghosty", "./assets/ghosty.png")
+loadSound("blip", "./assets/blip.mp3")
+loadSound("wooosh", "./assets/wooosh.mp3")
 
 scene("start", () => {
 
