@@ -2,15 +2,19 @@
 
 ## 项目介绍
 
-三款使用kaboomjs实现的小游戏。
+三款使用kaboomjs实现的小游戏。纯属娱乐联系项目，非商用，若侵删。
 
 ### 1.SUPER HAWKING
 
+![image](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/3286ca928a114b109ae67a7673404878~tplv-k3u1fbpfcp-watermark.image?)
 
 ### 2.EAT YOYO
 
+![image](https://p1-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/b27e4b5682d240879c3ec9013cff4cd9~tplv-k3u1fbpfcp-watermark.image)
 
 ### 3.FLAPPY CLICK
+
+![image](https://p9-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/33bb60e8497c44c7bb87a34d65320898~tplv-k3u1fbpfcp-watermark.image?)
 
 
 ## 快速体验

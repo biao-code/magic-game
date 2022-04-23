@@ -2,7 +2,7 @@ kaboom({
 	scale: 0.7,
 	background: [ 128, 180, 255 ],
 })
-// load assets
+// 加载资源
 loadSprite("bean", "../assets/hawking.png")
 loadSprite("ghosty", "../assets/ghosty.png")
 loadSprite("spike", "../assets/spike.png")
@@ -20,7 +20,7 @@ loadSprite("cloud", "../assets/cloud.png")
 loadSprite("sun", "../assets/sun.png")
 
 
-// custom component controlling enemy patrol movement
+// 控制敌人巡逻行动的自定义组件
 function patrol(speed = 60, dir = 1) {
 	return {
 		id: "patrol",
@@ -71,17 +71,16 @@ sun.onUpdate(() => {
 	sun.angle += dt() * 12
 })
 
-// custom component that makes stuff grow big
+// 定制组件，让东西变大
 function big() {
 	let timer = 0
 	let isBig = false
 	let destScale = 1
 	return {
-		// component id / name
+		// 组件id/名称
 		id: "big",
-		// it requires the scale component
+		// 它需要比例组件
 		require: [ "scale" ],
-		// this runs every frame
 		update() {
 			if (isBig) {
 				timer -= dt()
@@ -108,7 +107,7 @@ function big() {
 	}
 }
 
-// define some constants
+// 定义一些常数
 const JUMP_FORCE = 1320
 const MOVE_SPEED = 480
 const FALL_DEATH = 2400
@@ -181,12 +180,12 @@ const LEVELS = [
 	   ],
 ]
 
-// define what each symbol means in the level graph
+// 定义每个符号在水平图中的含义
 const levelConf = {
-	// grid size
+	// 网格大小
 	width: 64,
 	height: 64,
-	// define each object as a list of components
+	// 将每个对象定义为组件列表
 	"=": () => [
 		sprite("grass"),
 		area(),
@@ -242,33 +241,34 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
 
 	gravity(3200)
 
-	// add level to scene
+	// 向场景添加关卡
 	const level = addLevel(LEVELS[levelId ?? 0], levelConf)
 
-	// define player object
+	// 定义玩家对象
+
 	const player = add([
 		sprite("bean"),
 		pos(0, 0),
 		area(),
 		scale(1),
-		// makes it fall to gravity and jumpable
+		// 使重心下降并可跳跃
 		body(),
-		// the custom component we defined above
+		// 我们在上面定义的自定义组件
 		big(),
 		origin("bot"),
 	])
 
-	// action() runs every frame
+	// action() 每帧运行一次
 	player.onUpdate(() => {
-		// center camera to player
+		// 中央摄影机图层
 		camPos(player.pos)
-		// check fall death
+		// 制止坠落死亡
 		if (player.pos.y >= FALL_DEATH) {
 			go("lose")
 		}
 	})
 
-	// if player onCollide with any obj with "danger" tag, lose
+	// 如果玩家与任何带有“危险”标签的obj碰撞，则失败
 	player.onCollide("danger", () => {
 		go("lose")
 		play("hit")
@@ -296,7 +296,7 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
 	})
 
 	player.onCollide("enemy", (e, col) => {
-		// if it's not from the top, die
+		// 如果不是从上面，那就去死吧
 		if (!col.isBottom()) {
 			go("lose")
 			play("hit")
@@ -305,7 +305,6 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
 
 	let hasApple = false
 
-	// grow an apple if player's head bumps into an obj with "prize" tag
 	player.onHeadbutt((obj) => {
 		if (obj.is("prize") && !hasApple) {
 			const apple = level.spawn("#", obj.gridPos.sub(0, 1))
@@ -315,10 +314,10 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
 		}
 	})
 
-	// player grows big onCollide with an "apple" obj
+	// 玩家在与“苹果”obj的碰撞中变大
 	player.onCollide("apple", (a) => {
 		destroy(a)
-		// as we defined in the big() component
+		// 正如我们在big（）组件中定义的
 		player.biggify(3)
 		hasApple = false
 		play("powerup")
@@ -348,9 +347,9 @@ scene("game", ({ levelId, coins } = { levelId: 0, coins: 0 }) => {
 		fixed(),
 	])
 
-	// jump with space
+	// 空格键跳跃
 	onKeyPress("space", () => {
-		// these 2 functions are provided by body() component
+		// 这两个函数由body（）组件提供
 		if (player.isGrounded()) {
 			player.jump(JUMP_FORCE)
 		}
