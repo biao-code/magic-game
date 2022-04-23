@@ -3,49 +3,50 @@ kaboom({
 	background: [ 128, 180, 255 ],
 })
 
-loadSprite("bean", "./assets/click.png")
-loadSound("score", "./assets/score.mp3")
-loadSound("wooosh", "./assets/wooosh.mp3")
-loadSound("hit", "./assets/hit.mp3")
+loadSprite("bean", "/assets/click.png")
+loadSound("score", "/assets/score.mp3")
+loadSound("wooosh", "/assets/wooosh.mp3")
+loadSound("hit", "/assets/hit.mp3")
 
 scene("game", () => {
 
 	const PIPE_OPEN = 240
 	const PIPE_MIN = 60
 	const JUMP_FORCE = 800
-	const SPEED = 320
+	// 经测试，速度定义为600时，更容易获取更高分数
+	const SPEED = 600
 	const CEILING = -60
 
-	// define gravity
+	// 定义重力：3200是最合适的重力
 	gravity(3200)
 
-	// a game object consists of a list of components and tags
+	// 游戏对象包含的组件和标签列表
 	const bean = add([
-		// sprite() means it's drawn with a sprite of name "bean" (defined above in 'loadSprite')
+		// sprite（）表示它是用名为“bean”的精灵绘制的（在“loadSprite”中定义）
 		sprite("bean"),
-		// give it a position
+		// 默认位置
 		pos(width() / 4, 0),
-		// give it a collider
+		// 对撞机
 		area(),
-		// body component enables it to fall and jump in a gravity world
+		// body组件使它能够在重力世界中下落和跳跃
 		body(),
 	])
 
-	// check for fall death
+	// 检查是否有坠落死亡
 	bean.onUpdate(() => {
 		if (bean.pos.y >= height() || bean.pos.y <= CEILING) {
-			// switch to "lose" scene
+			// 切换到失败场景
 			go("lose", score)
 		}
 	})
 
-	// jump
+	// 绑定空格跳跃
 	onKeyPress("space", () => {
 		bean.jump(JUMP_FORCE)
 		play("wooosh")
 	})
 
-	// mobile
+	// 鼠标点击跳跃
 	onClick(() => {
 		const worldMousePos = toWorld(mousePos())
 		addKaboom(worldMousePos)
@@ -55,7 +56,7 @@ scene("game", () => {
 
 	function spawnPipe() {
 
-		// calculate pipe positions
+		// 计算管道位置
 		const h1 = rand(PIPE_MIN, height() - PIPE_MIN - PIPE_OPEN)
 		const h2 = height() - h1 - PIPE_OPEN
 
@@ -67,7 +68,7 @@ scene("game", () => {
 			area(),
 			move(LEFT, SPEED),
 			cleanup(),
-			// give it tags to easier define behaviors see below
+			// 给它一个更容易定义的行为流
 			"pipe",
 		])
 
@@ -79,22 +80,21 @@ scene("game", () => {
 			area(),
 			move(LEFT, SPEED),
 			cleanup(),
-			// give it tags to easier define behaviors see below
 			"pipe",
-			// raw obj just assigns every field to the game obj
+			// 原始obj只是将每个字段分配给游戏obj的组件
 			{ passed: false, },
 		])
 
 	}
 
-	// callback when bean onCollide with objects with tag "pipe"
+	// bean与标记为“pipe”的对象关联时的回调
 	bean.onCollide("pipe", () => {
 		go("lose", score)
 		play("hit")
 		addKaboom(bean.pos)
 	})
 
-	// per frame event for all objects with tag 'pipe'
+	// 标记为“pipe”的所有对象的每帧事件
 	onUpdate("pipe", (p) => {
 		// check if bean passed the pipe
 		if (p.pos.x + p.width <= bean.pos.x && p.passed === false) {
@@ -103,14 +103,15 @@ scene("game", () => {
 		}
 	})
 
-	// spawn a pipe every 1 sec
+	// 每1秒产生一根管子
 	loop(1, () => {
 		spawnPipe()
 	})
 
+	// 初始化分数
 	let score = 0
 
-	// display score
+	// 显示分数
 	const scoreLabel = add([
 		text(score),
 		origin("center"),
@@ -118,6 +119,7 @@ scene("game", () => {
 		fixed(),
 	])
 
+	// 加分
 	function addScore() {
 		score++
 		scoreLabel.text = score
@@ -135,7 +137,7 @@ scene("lose", (score) => {
 		origin("center"),
 	])
 
-	// display score
+	// 显示分数
 	add([
 		text(score),
 		pos(width() / 2, height() / 2 + 108),
@@ -143,7 +145,7 @@ scene("lose", (score) => {
 		origin("center"),
 	])
 
-	// go back to game with space is pressed
+	// 按下空格键返回游戏
 	onKeyPress("space", () => go("game"))
 	onClick(() => go("game"))
 
