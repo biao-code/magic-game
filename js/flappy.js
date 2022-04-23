@@ -3,10 +3,10 @@ kaboom({
 	background: [ 128, 180, 255 ],
 })
 
-loadSprite("bean", "/assets/click.png")
-loadSound("score", "/assets/score.mp3")
-loadSound("wooosh", "/assets/wooosh.mp3")
-loadSound("hit", "/assets/hit.mp3")
+loadSprite("bean", "../assets/click.png")
+loadSound("score", "../assets/score.mp3")
+loadSound("wooosh", "../assets/wooosh.mp3")
+loadSound("hit", "../assets/hit.mp3")
 
 scene("game", () => {
 
